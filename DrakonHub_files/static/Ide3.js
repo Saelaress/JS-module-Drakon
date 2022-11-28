@@ -1882,10 +1882,10 @@ function loadFont(italic, bold, family, file, onLoaded) {
     	}
     }
     showWorking()
-    // loadFontCore(
-    	// spec,
-    	// target
-    // )
+    loadFontCore(
+    	spec,
+    	target
+    )
     
     } catch (e) {
     	CallTrace.error(e)

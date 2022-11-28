@@ -8,7 +8,7 @@ var gWidgets = new TabGen4(gName)
 gWidgets.setNextId(id)
 
 
-this.imagePath = imagePath || "/static/images/"
+this.imagePath = imagePath || "DrakonHub_files/images/"
 
 
 var TreeIconWidth = 30
