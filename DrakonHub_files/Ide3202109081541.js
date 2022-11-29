@@ -75,9 +75,9 @@ function Ide3(h, q, k, ma, W) {
         var a = e.central; a && (e.central = null, m.widgets.deleteWidget(a), a = p("central"), a.innerHTML = "", a.style.display =
             "none", e.mobileInput = !1, e.mobileSubmit = !1, e.search = {})
     } function ga() { var a = q.getElementById("demoShowOnStart_check"); a && (a.checked ? HtmlUtils.deleteCookie("demo-discarded") : HtmlUtils.setCookie("demo-discarded", "discarded", 20), Ha()) } function N() { p("help_wide").style.display = "none"; p("help_narrow").style.display = "none"; e.helpOn = !1 } function Ja() { e.wide ? InputBox.hide() : H() } function A() { HtmlUtils.hidePopup() } function I() { p("working").style.display = "none" } function Pa() { return !!HtmlUtils.getCookie("demo-discarded") }
-    function R() { return "middle_diagram" != m.logic.getCurrent().screen || HtmlUtils.hasPopup() || e.central ? !1 : u().isDragOn() ? !1 : !0 } function ba() { Da(); ca() } function Xb() { var a = p("file-input").files[0]; a ? O(a) : HtmlUtils.setText("file-error", k("MES_NO_FILE_CHOSEN")) } function Mb(a, b, c, d, g) { try { var e = { italic: a, bold: b, family: c, file: d }; K(); Qa(e, { onData: function () { I(); g() }, onError: function (a) { Ra(a, e) } }) } catch (f) { CallTrace.error(f), G(f) } } function Qa(a, b) {
+    function R() { return "middle_diagram" != m.logic.getCurrent().screen || HtmlUtils.hasPopup() || e.central ? !1 : u().isDragOn() ? !1 : !0 } function ba() { Da(); ca() } function Xb() { var a = p("file-input").files[0]; a ? O(a) : HtmlUtils.setText("file-error", k("MES_NO_FILE_CHOSEN")) } function Mb(a, b, c, d, g) { try { var e = { italic: a, bold: b, family: c, file: d }; K(); Qa(e, { onData: function () { I(); g() },  onError: function (a) { Ra(a, e) }  }) } catch (f) { CallTrace.error(f), G(f) } } function Qa(a, b) {
         var c = a.file; if (c in e.loadedFonts) console.log("Font already loaded ",
-            c), U(b, null, 1); else { var d = Yb(a.italic, a.bold, a.family, c); vb(d); d = Zb(a.italic, a.bold); (new FontFaceObserver(a.family, d)).load(null, 1E3 * Config.FONT_TIMEOUT).then(function () { try { CallTrace.add("font ready", [c]); var d = Utils.buildFontFace(a.italic, a.bold, a.family); console.log("Font ready", c, d); HtmlUtils.fontFaceLoaded(d); e.loadedFonts[c] = !0; U(b, null, 200) } catch (f) { Ra(f, a) } }, function () { console.log("Font NOT loaded", c); CallTrace.add("font NOT loaded", [c]); U(b, null, 200) }) }
+            c), U(b, null, 1); else { var d = Yb(a.italic, a.bold, a.family, c); vb(d); d = Zb(a.italic, a.bold); (new FontFaceObserver(a.family, d)).load(null, 400).then(function () { try { CallTrace.add("font ready", [c]); var d = Utils.buildFontFace(a.italic, a.bold, a.family); console.log("Font ready", c, d); HtmlUtils.fontFaceLoaded(d); e.loadedFonts[c] = !0; U(b, null, 200) } catch (f) { Ra(f, a) } }, function () { console.log("Font NOT loaded", c); CallTrace.add("font NOT loaded", [c]); U(b, null, 200) }) }
     } function f(a, b) {
         var c = q.createElement(b);
         a.appendChild(c); return c
@@ -112,8 +112,10 @@ function Ide3(h, q, k, ma, W) {
     } function tc(a, b, c, d, e) { 0 == e && (C("removeAdmin").remove(d), w(), a = { role: "admin", user: d }, t().removeUser(a)) } function za() { var a = e.search.popup; e.search.empty && (a.removeChild(e.search.empty), e.search.empty = null) } function uc() {
         var a = "/buy"; ab() && (a = "team" == e.plan ? "/trial" : "/prices"); var b = []; e.plan && b.push("product=" + e.plan); e.ref && b.push("ref=" +
             e.ref); 0 != b.length && (b = b.join("&"), a += "?" + b); J(a)
-    } function vc(a, b, c, d, e) { 0 == e && (C("removeReader").remove(d), w(), a = { role: "read", user: d }, t().removeUser(a)) } function wc(a, b, c, d, e) { 0 == e && (C("removeWriter").remove(d), w(), a = { role: "write", user: d }, t().removeUser(a)) } function $a(a, b, c, d, e) {
-        var f = null; e && (f = e.stack); console.log(a, b, c, d, e); DTools.print(a, e, b, c); c = CallTrace.reset(); console.log(c); a = { type: "crash", errorMsg: a, errorUrl: b, errorObj: e, trace: c, stack: f, clientDiagram: m.logic.getDiagram() }; Ia(a, function () { },
+    } function vc(a, b, c, d, e) { 0 == e && (C("removeReader").remove(d), w(), a = { role: "read", user: d }, t().removeUser(a)) } function wc(a, b, c, d, e) { 0 == e && (C("removeWriter").remove(d), w(), a = { role: "write", user: d }, t().removeUser(a)) } 
+	 function $a(a, b, c, d, e) {
+        var f = null; e && (f = e.stack); console.log(a, b, c, d, e); DTools.print(a, e, b, c); c = CallTrace.reset(); console.log(c); a = { type: "crash", errorMsg: a, errorUrl: b, errorObj: e, trace: c, stack: f, clientDiagram: m.logic.getDiagram() }; 
+		Ia(a, function () { },
             function () { })
     } function w() { var a = e.central; if (a) { var b = h.innerHeight - 10, c = Math.floor((h.innerWidth - 320) / 2), d = C(a).measureHeight(320), b = Math.min(b, d); e.widgets.resizeWidget(a, c, 10, 320, b) } } function Ob() { var a = this.rect; e.editor.resize(a.left, a.top, a.width, a.height) } function bb() { O(null) } function Va() { var a = e.mobileIsAsync, b = e.mobileOnSave, c = e.mobileValidate, d = p("mob_input_edit").value; c ? (c = c(d)) ? cb(k(c)) : (a || H(), b(d)) : (a || H(), b(d)) } function Kb(a) { } function Lb(a) { m.logic.saveUserSettings(a) } function Gb() {
         var a =
@@ -121,7 +123,7 @@ function Ide3(h, q, k, ma, W) {
     } function U(a, b, c) { h.setTimeout(function () { a.onData(b) }, c) } function xc() { var a = C("searchUsers").getValue(), a = a.trim(); t().onInput(a) } function Wa(a) { for (var b = 0, c = e.demo.buttons, d = Object.keys(c), g = d.length; b < g;) { var f = d[b], k = c[f], f = p(f); f.style.background = "#455A64"; b++ } f = p(a); f.style.background = "black"; k = e.demo.buttons[a]; a = "images/" + k.image; p("demoViewport_img").src = a } function db() {
         var a =
             k("MES_SEND_FEEDBACK_TO_DEV"); da(!0, k(a), "", function (a) { Qb(a) }, Sb, !1)
-    } function Ia(a, b, c) { a.url = h.location.href; var d = m.logic.getCurrent(); a.screen = d.screen; a.spaceId = d.spaceId; a.folderId = d.folderId; a.doc_type = d.type; HtmlUtils.sendPost("/api/feedback/", a, b, c) } function eb(a, b, c) {
+    } function Ia(a, b, c) { /* a.url = h.location.href; var d = m.logic.getCurrent(); a.screen = d.screen; a.spaceId = d.spaceId; a.folderId = d.folderId; a.doc_type = d.type; HtmlUtils.sendPost("/api/feedback/", a, b, c) */ } function eb(a, b, c) {
         CallTrace.add("sendPost", [a]); var d = Utils.randomString(10); c.requestId = d; var e = n(function (a) { if (c.requestId == d) c.onData(a) }, "sendPost:success"), f = n(function (a) { if (c.onError) c.onError(a) }, "sendPost:error"); HtmlUtils.sendPost(a,
             b, e, f)
     } function O(a) { var b = e.centralMachines.length; if (0 != b) e.centralMachines[b - 1].onData(a) } function zb(a) { this.projects.innerHTML = ""; for (var b = f(this.projects, "table"), c = 0, d = a.length; c < d;)sb(b, a[c]), c++ } function yb(a) { this.recent.innerHTML = ""; for (var b = f(this.recent, "table"), c = 0, d = a.length; c < d;)ub(b, a[c]), c++ } function Ka(a) { e.wide ? InputBox.setError(a) : cb(a) } function S(a, b) { try { h.localStorage.setItem(a, b) } catch (c) { e.clip[a] = b } } function cb(a) { HtmlUtils.setText("mobile_input_error", a); w() } function la(a,
@@ -138,7 +140,7 @@ function Ide3(h, q, k, ma, W) {
             }
         } function fb() {
             "drakon" ==
-            m.logic.getCurrent().type ? V("drakon_only", "block") : V("drakon_only", "none"); "mind" == m.logic.getCurrent().type ? V("mind_only", "block") : V("mind_only", "none"); e.wide ? p("help_wide").style.display = "block" : p("help_narrow").style.display = "block"; e.helpOn = !0
+                m.logic.getCurrent().type ? V("drakon_only", "block") : V("drakon_only", "none"); "mind" == m.logic.getCurrent().type ? V("mind_only", "block") : V("mind_only", "none"); e.wide ? p("help_wide").style.display = "block" : p("help_narrow").style.display = "block"; e.helpOn = !0
         } function da(a, b, c, d, g, f, k, h) { e.enterSave = f; e.wide ? InputBox.show(a, b, c, d, g, k, h) : yc(a, b, c, d, g) } function V(a, b) { b = b || "block"; for (var c = 0, d = q.getElementsByClassName(a), e = d.length; c < e;)d[c].style.display = b, c++ } function yc(a, b, c, d, g) {
             b = {
                 type: "label", text: b, raw: !0,
@@ -147,7 +149,7 @@ function Ide3(h, q, k, ma, W) {
                 type: "page", style: { background: "white" }, padding: 10, kids: [{ type: "hdock", height: 40, lefts: [{ signalId: "cancelMachine", type: "text_button", text: "MES_CANCEL", style: { color: "white", background: "#455A64", padding: "12px", textAlign: "center", borderRadius: "5px" } }], rights: [{ signalId: "saveMobileInput", type: "text_button", text: "MES_SAVE", style: { color: "white", background: "coral", padding: "12px", textAlign: "center", borderRadius: "5px" } }], center: b }, {
                     type: "custom", id: "mobile_input_error", builder: function (a) {
                         a.style.color =
-                        "#900000"
+                            "#900000"
                     }
                 }, { type: "custom", builder: function (a) { a = Ta(a); a.style.height = "180px"; a.value = c; a.focus(); a.select(); a.id = "mob_input_edit" } }]
             }, null); e.mobileInput = !0; e.mobileIsAsync = a; e.mobileOnSave = d; e.mobileValidate = g
@@ -244,12 +246,12 @@ function Ide3(h, q, k, ma, W) {
                     }, rightChild: { type: "pane", id: "right_pane", text: "MES_RECENT", kid: { type: "list", id: "recent" } }
                 }
             }; f = p("wide"); e.root = e.widgets.createWidget(f, c); e.wide && !e.tryMe && (f = p("wide"), c = q.createElement("div"),
-                HtmlUtils.insertAfter(c, f), c.id = "feedback", HtmlUtils.setDivText(c, k("MES_SEND_FEEDBACK")), f = c.style, c.className = "common_button", HtmlUtils.noContext(c), f.cursor = "pointer", f.display = "inline-block", f.color = "black", f.background = "coral", f.padding = "3px", f.borderRadius = "4px", c.style.position = "absolute", c.style.right = "50px", c.style.bottom = "2px", c.style.zIndex = 20, c.onclick = db); Jb(); C("top").setActive("top_diagram"); C("middle").setActive("middle_folder")
+                HtmlUtils.insertAfter(c, f), c.id = "feedback", /* console.log("Здесь был Вася!"), */ HtmlUtils.setDivText(c, "FFF!" + k("MES_SEND_FEEDBACK")), f = c.style, c.className = "common_button", HtmlUtils.noContext(c), f.cursor = "pointer", f.display = "none", f.color = "black", f.background = "coral", f.padding = "3px", f.borderRadius = "4px", c.style.position = "absolute", c.style.right = "50px", c.style.bottom = "2px", c.style.zIndex = 20, c.onclick = db); Jb(); C("top").setActive("top_diagram"); C("middle").setActive("middle_folder")
         }; this.panic = G; this.goToUrl = J; this.setTimeout = la; this.sendGet =
             function (a, b) { CallTrace.add("sendGet", [a]); var c = Utils.randomString(10); b.requestId = c; var d = n(function (a) { if (b.requestId == c) b.onData(a) }, "sendGet:success"), e = n(function (a) { if (b.onError) b.onError(a) }, "sendGet:error"); HtmlUtils.sendGet(a, d, e) }; this.sendPost = eb; this.sendDelete = function (a, b) { CallTrace.add("sendDelete", [a]); var c = n(function (a) { b.onData(a) }, "sendDelete:success"), d = n(function (a) { if (b.onError) b.onError(a) }, "sendDelete:error"); HtmlUtils.sendRequest("DELETE", a, {}, c, d) }; this.sendPut = function (a,
                 b, c) { CallTrace.add("sendPut", [a]); var d = Utils.randomString(10); c.requestId = d; var e = n(function (a) { if (c.requestId == d) c.onData(a) }, "sendPut:success"), f = n(function (a) { if (c.onError) c.onError(a) }, "sendPut:error"); HtmlUtils.sendRequest("PUT", a, b, e, f) }; this.showWorking = K; this.hideWorking = I; this.setTitle = function (a) { q.title = a }; this.showInputBox = da; this.hideInputBox = Ja; this.setInputBoxError = Ka; this.getEditor = u; this.loadFontCore = Qa; this.showNotification = ea; this.placeFeedback = function (a) {
                     p("feedback").style.right =
-                    a + "px"
+                        a + "px"
                 }; this.pushState = function (a, b, c) { Nav.pushState(a, b, h.location.origin + c) }; this.createCentral = T; this.addCentral = function (a, b) { v(a, b) }; this.hideCentral = H; this.resizeCentral = w; this.showChooseTypeDialog = function (a) {
                     T({
                         type: "page", style: { background: "white" }, padding: 5, kids: [{ type: "wlabel", text: "Choose diagram type", textAlign: "center", style: { fontWeight: "bold", fontSize: "120%" } }, {
@@ -335,7 +337,7 @@ function Ide3(h, q, k, ma, W) {
                     }); b.push({ signalId: "cancelMachine", type: "wbutton", text: "MES_CANCEL", style: { color: "white", background: "#455A64", padding: "12px", textAlign: "center" } }); v({ type: "page", padding: 10, style: { background: "white" }, kids: b }, a); p("signupOk").className = "default_button"
                 }; this.scheduleNextStateAfter = U; this.getExample = function () { return "static/" + (Utils.parseSearch(h.location.search).example || "example01") + ".json" }; this.preventQuestion = function () {
                     h.onbeforeunload =
-                    null
+                        null
                 }; HtmlUtils.setErrorReporter(G); this.setMobileHeader = function (a) { if (!e.wide) for (var b = 0, c = "folderLabel diaLabel folderLabelRo diaLabelRo folderLabelNu diaLabelNu".split(" "), d = c.length; b < d;)HtmlUtils.setText(c[b], a), b++ }; this.cancelSearch = Ca; this.createSearchList = function (a, b) { e.search = {}; var c = aa(); e.search.defs = Utils.copyObjectDeep(a); e.search.widgetId = c.id; e.search.expanded = null; Pb(); ya(b) }; this.addToSearchList = ya; this.trialAllowed = ab; this.showDemo = function (a) {
                     Ha(); var b = p("demo"); b.style.display =
                         "inline-block"; b.style.position = "fixed"; var c = f(b, "div"); c.style.background = "black"; c.style.opacity = .3; c.onclick = n(ga, "hideDemo"); c.style.display = "inline-block"; c.style.position = "fixed"; c.style.left = "0px"; c.style.right = "0px"; c.style.top = "0px"; c.style.bottom = "0px"; var b = f(b, "div"), c = Math.floor(405).toString(), d = Math.floor(280).toString(); b.style.display = "inline-block"; b.style.position = "fixed"; b.style.background = "white"; b.style.left = "calc(50% - " + c + "px)"; b.style.top = "calc(50vh - " + d + "px)"; b.style.width =

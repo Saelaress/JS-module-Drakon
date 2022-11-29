@@ -2079,7 +2079,8 @@ function init(cfg) {
     	onToggleShowToolbar,
     	"left",
     	"#F2F2F2",
-    	"show-toobox.png"
+    	/* "show-toobox.png" */
+		"show-right.png"
     )
     setupEditor()
     setupDialog()
