@@ -226,7 +226,7 @@ function Ide3(h, q, k, ma, W) {
                     style: y, tooltip: k("MES_SAVE_OWN")
                 }; l = { id: "top_diagram_nu", type: "vpanel", kids: [{ type: "hdock", height: 52, lefts: [c, y, A, m], rights: l, style: { background: "#455A64" } }, v] }; m = { id: "top_folder_nu", type: "vpanel", kids: [{ type: "hdock", height: 52, lefts: [c, m], rights: [g], style: { background: "#455A64" } }, E] }; g = { id: "top_spaces_nu", type: "hdock", height: 52, lefts: [c, D], rights: [], style: { background: "#455A64" } }; r = Utils.copyObject(r); r.id = "export_button_try"; c = [{ id: "dummy", type: "dummy", height: 52, style: { background: "#ffd0d0" } }, w, x, B,
                     d, t, u, m, l, g, { id: "top_diagram_try", type: "hdock", height: 52, lefts: [c, y, f, h, r], rights: [n], style: { background: "#455A64" }, center: { type: "path" } }]
-            } f = []; f.push({ id: "folderSearch", vPadding: 6, hPadding: 6, type: "search", height: 30, width: 150 }); c = {
+            } f = []; /* f.push({ id: "folderSearch", vPadding: 6, hPadding: 6, type: "search", height: 30, width: 150 }); */ c = {
                 type: "vdock", id: "root", top: { id: "top", type: "many", height: 52, kids: c }, center: {
                     id: "splitter", type: "splitter", left: 200, right: 200, leftChild: { type: "pane", id: "left_pane", text: "MES_SPACES", kid: { type: "tree", id: "tree" } }, middleChild: {
                         id: "middle", type: "many", kids: [{
