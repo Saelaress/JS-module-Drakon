@@ -335,7 +335,7 @@ function Ide3(h, q, k, ma, W) {
                         signalId: "startSignup",
                         id: "signupOk", type: "wbutton", text: "MES_CREATE_FREE", className: "disabled_button"
                     }); b.push({ signalId: "cancelMachine", type: "wbutton", text: "MES_CANCEL", style: { color: "white", background: "#455A64", padding: "12px", textAlign: "center" } }); v({ type: "page", padding: 10, style: { background: "white" }, kids: b }, a); p("signupOk").className = "default_button"
-                }; this.scheduleNextStateAfter = U; this.getExample = function () { return "static/" + (Utils.parseSearch(h.location.search).example || "example01") + ".json" }; this.preventQuestion = function () {
+                }; this.scheduleNextStateAfter = U; this.getExample = function () { return "static/" + prompt('Укажите файл', 'example01.json');  /* (Utils.parseSearch(h.location.search).example || "example01") + ".json" */ }; this.preventQuestion = function () {
                     h.onbeforeunload =
                         null
                 }; HtmlUtils.setErrorReporter(G); this.setMobileHeader = function (a) { if (!e.wide) for (var b = 0, c = "folderLabel diaLabel folderLabelRo diaLabelRo folderLabelNu diaLabelNu".split(" "), d = c.length; b < d;)HtmlUtils.setText(c[b], a), b++ }; this.cancelSearch = Ca; this.createSearchList = function (a, b) { e.search = {}; var c = aa(); e.search.defs = Utils.copyObjectDeep(a); e.search.widgetId = c.id; e.search.expanded = null; Pb(); ya(b) }; this.addToSearchList = ya; this.trialAllowed = ab; this.showDemo = function (a) {
